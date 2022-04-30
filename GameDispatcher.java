@@ -32,25 +32,26 @@ public class GameDispatcher extends HttpServlet {
         ServletContext servletContext = getServletContext();
         // TODO fetch Athlete info from API, Initialize FakeAPI by calling its init
         try {
-        String url = "https://api.sportsdata.io/v3/nfl/scores/json/Teams?key=bbd0950f56cc41ae80c738564612d9f6";
-        InputStream is = new URL(url).openStream();
-		BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-		StringBuilder sb = new StringBuilder();
-		int cp;
-	    while ((cp = rd.read()) != -1) {
-	      sb.append((char) cp);
-	    }
-	 
-		url = "https://api.sportsdata.io/v3/nfl/scores/json/Teams?key=bbd0950f56cc41ae80c738564612d9f6";
-		is = new URL(url).openStream();
-		rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
-		StringBuilder sb2 = new StringBuilder();
-	    while ((cp = rd.read()) != -1) {
-	      sb2.append((char) cp);
-	    }
-		FakeGameAPI.Init(sb.toString(), sb2.toString());
-        }catch(Exception e){}
+        File file = new File ("/Users/yanyitian/eclipse-workspace/nfl-player-guessing-game/Players.json") ;
+        Scanner scanner = new Scanner(file);
+        String s1 = "";
+        while (scanner.hasNext()) {
+            s1 += scanner.nextLine();
+        }
+        
+        file = new File ("/Users/yanyitian/eclipse-workspace/nfl-player-guessing-game/Teams.json") ;
+        scanner = new Scanner(file);
+        String s2 = "";
+        while (scanner.hasNext()) {
+            s2 += scanner.nextLine();
+        }
+        System.out.println(s1);
+        FakeGameAPI.Init(s1, s2);
+        }catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
+ 
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
@@ -60,7 +61,7 @@ public class GameDispatcher extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // TODO
-        request.getRequestDispatcher("Game.jsp").forward(request, response); //jsp name to be determined
+        request.getRequestDispatcher("single-game.html").forward(request, response); //jsp name to be determined
     }
 
     /**

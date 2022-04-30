@@ -7,16 +7,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.*;
-
+import com.google.gson.*;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.reflect.TypeToken;
 
 public class FakeGameAPI {
 	  private static Boolean ready = false;
-	  static public Player[] all_players = null;
-	  static public Team[] all_teams = null;
+	  static public List<Player> all_players = null;
+	  static public List<Team> all_teams = null;
 	  static public Player targetPlayer = null;
 	  static public Team targetTeam = null;
-	  private static Random rand = new Random();
 	 public static void Init(String playerinfo, String teaminfo) {
         if (ready) {
             return;
@@ -28,11 +29,24 @@ public class FakeGameAPI {
         }
         ready = true;
         Gson gson = new Gson();
-		all_players = gson.fromJson(playerinfo, Player[].class);
-		all_teams = gson.fromJson(teaminfo, Team[].class);
+		all_players = new ArrayList<Player>(Arrays.asList(gson.fromJson(playerinfo, Player[].class)));
+		all_teams = new ArrayList<Team>(Arrays.asList(gson.fromJson(teaminfo, Team[].class)));
+		int p = 0;
+		//remove the player if the team is null
+		while(p < all_players.size()) {
+			Player player = all_players.get(p);
+			if(player.getTeam() == null) {
+				all_players.remove(player);
+			}
+			else {
+				p++;
+			}
+		}
 		//find targetPlayer and targetTeam
-		int id = rand.nextInt(all_players.length);
-		targetPlayer = all_players[id];
+	    Random rand = new Random();
+		int id = rand.nextInt(all_players.size());
+		targetPlayer = all_players.get(id);
+		System.out.println(id);
 		for(Team t: all_teams) {
 			if(targetPlayer.getTeam().contentEquals(t.getTeam())) {
 				targetTeam = t;
