@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+body {
+    color: #7F7F7F;
+    font-size: 12px;
+    font-family: 'Roboto', sans-serif;
+    margin: 0% 0%;
+}
+
+.navbar{
+	padding: 1% 1%;
+}
+
+
+#auth-error{
+	background-color: #ff6a66;
+	width: 100%;
+	text-align: center;
+	color: black;
+}
+
+.auth-container{
+	text-align: center;
+	
+}
+.auth {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 30px 50px;
+}
+
+
+.result {
+	display: inline-block;
+	vertical-align: middle;
+	margin: 10px 10px;
+}
+
+.auth-form{
+	margin: 10px 0px;
+}
+
+.auth-button{
+	padding: 5px;
+	background-color: #d51003;
+	color: white;
+	border:none;
+	width: 300px;
+}
+
+.auth-button-icon{
+	margin: 0px 5px;
+}
+
+.auth-input{
+	width: 300px;
+}
+
+#header-brand{
+	color: #ad0c02;	
+}
+
+
+a{
+	text-decoration: none;
+}
+
+.header-option{
+	color: #4a4a4a;
+	margin: 0px 10px;
+}
