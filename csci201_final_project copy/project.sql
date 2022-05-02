@@ -1,0 +1,46 @@
+DROP DATABASE IF EXISTS PROJECT;
+CREATE DATABASE PROJECT;
+
+USE PROJECT;
+
+DROP TABLE IF EXISTS UserStats;
+DROP TABLE IF EXISTS User;
+DROP TABLE IF EXISTS Athlete;
+
+CREATE TABLE User(
+	userId INT PRIMARY KEY AUTO_INCREMENT,
+	email VARCHAR(255) UNIQUE NOT NULL,
+	userName VARCHAR(25) UNIQUE NOT NULL,
+	password VARCHAR(45) NOT NULL
+);
+
+CREATE TABLE UserStats(
+userStatsId INT PRIMARY KEY AUTO_INCREMENT,
+userId INT,
+gamesPlayed INT DEFAULT 0,
+gamesWon INT DEFAULT 0,
+currentStreak INT DEFAULT 0,
+maxStreak INT DEFAULT 0,
+winsInFirst INT DEFAULT 0,
+winsInSecond INT DEFAULT 0,
+winsInThird INT DEFAULT 0,
+winsInFourth INT DEFAULT 0,
+winsInFifth INT DEFAULT 0,
+winsInSixth INT DEFAULT 0,
+winsInSeventh INT DEFAULT 0,
+winsInEighth INT DEFAULT 0,
+FOREIGN KEY (userId) REFERENCES User(userId)
+);
+
+CREATE TABLE Athlete(
+	athleteId INT PRIMARY KEY AUTO_INCREMENT,
+    fullName VARCHAR(45),
+    conference VARCHAR(25),
+    division VARCHAR(25),
+    team VARCHAR(25),
+    position VARCHAR(10),
+    height VARCHAR(5),
+    weight INT,
+    age INT
+);
+
