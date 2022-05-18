@@ -1,0 +1,25 @@
+@charset "UTF-8";
+
+
+.bordered{
+    border: 1px solid #000000;
+}
+.info1{
+    height:75px;
+}
+
+.back-row1{
+    background-color:#FAF3DD;
+    text-align: center;
+}
+
+
+.test-sizing{
+    width:10px;
+    height:10px;
+    border-radius:40%;
+}
+
+.testing{
+	color:black;
+}
